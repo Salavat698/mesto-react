@@ -55,7 +55,7 @@ function Main (props){
                   <div className="element">
                       {cards.map((item, i) => (
                           <div key={i}>
-                          <Card dataCards = {item} onCardClick={props.onClick}/>
+                          <Card dataCards = {item} onCardClick={props.onCardClick}/>
                           </div>
                         ))}
                   </div>

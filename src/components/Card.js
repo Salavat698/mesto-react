@@ -4,9 +4,7 @@ import backet from '../images/backet.svg'
 function Card (props){
   
   function handleClick() {
-
-    props.onCardClick(props.dataCards.link,props.dataCards.name);
-
+    props.onCardClick(props.dataCards);
   } 
 
     return(
@@ -16,9 +14,8 @@ function Card (props){
           <img className="element__image" 
            alt={props.name}
            style={{ backgroundImage: `url(${props.dataCards.link})` }}
-
-           onClick={handleClick}/>
-
+           onClick={handleClick}
+           />
           <img className="element__backet" src={backet} alt="Корзина для удаление фото-карточки"/>
         </div>
         <div className="element__footer">
