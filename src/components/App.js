@@ -22,6 +22,10 @@ function App() {
 
   const [selectedCard, setselectedCard] = React.useState({});
   const handleCardClick = setselectedCard;
+  
+  React.useEffect(()=>{
+    setselectedCard(false)
+  },[])
 
   function closeAllPopups(){
     setIsEditAvatarPopupOpen(false)
