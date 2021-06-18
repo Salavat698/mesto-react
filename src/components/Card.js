@@ -13,6 +13,7 @@ function Card (props){
         <div className="element__header">
           <img className="element__image" 
            alt={props.name}
+           src=""
            style={{ backgroundImage: `url(${props.dataCards.link})` }}
            onClick={handleClick}
            />

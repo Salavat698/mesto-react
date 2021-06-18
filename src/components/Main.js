@@ -1,33 +1,37 @@
 import addVector from '../images/add-vector.svg'
 import editButton from '../images/Edit-Button.svg'
-import api from '../components/Api.js';
+import api from '../utils/api.js';
 import Card from './Card';
 import React from 'react';
 
 
 function Main (props){
-  const [userName, setuserName] = React.useState();
-  const [userDescription , setuserDescription ] = React.useState();
-  const [userAvatar, setuserAvatar] = React.useState();
+  const [userName, setUserName] = React.useState();
+  const [userDescription , setUserDescription ] = React.useState();
+  const [userAvatar, setUserAvatar] = React.useState();
 
   React.useEffect(()=>{
     api.getUserInfo()
     .then(res=>{
-      setuserName(res.name)
-      setuserDescription(res.about)
-      setuserAvatar(res.avatar)
+      setUserName(res.name)
+      setUserDescription(res.about)
+      setUserAvatar(res.avatar)
     })
-  })
+    .catch(res=>{
+      console.log(`Error:${res}`)
+    })
+  },[])
 
-  // function handleClick() {
-  //   // props.onCardClick(props.dataCards.link);
-  // }
+
   const [cards, setCards] = React.useState([])
 
   React.useEffect(()=>{
     api.getInitialCards()
     .then(res =>{
       setCards(res)
+    })
+    .catch(res=>{
+      console.log(`Error:${res}`)
     })
   }
   ,[])
