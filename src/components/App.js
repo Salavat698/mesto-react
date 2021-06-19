@@ -10,28 +10,26 @@ function App() {
     setIsEditAvatarPopupOpen(true)
   }
 
-  const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   function handleEditProfileClick (){
-     setisEditProfilePopupOpen (true)
+     setIsEditProfilePopupOpen (true)
   }
 
-  const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   function handleAddPlaceClick (){
-    setisAddPlacePopupOpen(true)
+    setIsAddPlacePopupOpen(true)
   }
 
-  const [selectedCard, setselectedCard] = React.useState({});
-  const handleCardClick = setselectedCard;
+  const [selectedCard, setSelectedCard] = React.useState({});
+  const handleCardClick = (card) => {
+  setSelectedCard(card)
+}
   
-  React.useEffect(()=>{
-    setselectedCard(false)
-  },[])
-
   function closeAllPopups(){
     setIsEditAvatarPopupOpen(false)
-    setisEditProfilePopupOpen (false)
-    setisAddPlacePopupOpen(false)
-    setselectedCard(false)
+    setIsEditProfilePopupOpen (false)
+    setIsAddPlacePopupOpen(false)
+    setSelectedCard({})
   }
 
 
@@ -39,7 +37,8 @@ function App() {
 
   React.useEffect(() => {
     const handleEsc = (event) => {
-       if (event.keyCode === 27) {
+      const btnEscape = 27;
+       if (event.keyCode === btnEscape) {
         closeAllPopups()
       }
     };
@@ -61,21 +60,21 @@ function App() {
           />
           <Footer/>
             
-          <PopupWithForm popupAllClose='popup' name ="popup_profile "  title ="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
+          <PopupWithForm  name ="popup_profile "  title ="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
               <input id="name-input" className="popup__input" type="text" name="name" placeholder="Имя" required minLength={2} maxLength={40} />
               <span id="name-input--error" className="popup__input-error" />
               <input id="work-input" className="popup__input " type="text" name="work" placeholder="О себе" required minLength={2} maxLength={200} />
               <span id="work-input--error" className="popup__input-error" />
           </PopupWithForm>
 
-          <PopupWithForm popupAllClose='popup' name ="popup_add-cards "  title ="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
+          <PopupWithForm  name ="popup_add-cards "  title ="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
               <input id="description-card" className="popup__input popup__input-description " type="text" placeholder="Название" required />
               <span id="description-card--error" className="popup__input-error" />
               <input className="popup__input popup__input-images" id="url-card" type="url" placeholder="Ссылка на картинку" required />
               <span id="url-card--error" className="popup__input-error" />
           </PopupWithForm>
 
-          <PopupWithForm popupAllClose='popup' name ="popup_profile "  isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
+          <PopupWithForm  name ="popup_profile "  isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
               <p className="popup__title popup__question popup__question-avatar">Обновить аватар</p>
               <input className="popup__input popup__input-avatar" id="url-avatar" name="avatar" type="url" placeholder="Ссылка на новый аватар" required />
               <span id="url-avatar--error" className="popup__input-error " />

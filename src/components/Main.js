@@ -6,9 +6,9 @@ import React from 'react';
 
 
 function Main (props){
-  const [userName, setUserName] = React.useState();
-  const [userDescription , setUserDescription ] = React.useState();
-  const [userAvatar, setUserAvatar] = React.useState();
+  const [userName, setUserName] = React.useState('');
+  const [userDescription , setUserDescription ] = React.useState('');
+  const [userAvatar, setUserAvatar] = React.useState('');
 
   React.useEffect(()=>{
     api.getUserInfo()
@@ -57,22 +57,20 @@ function Main (props){
             <section className="elements">
 
                   <div className="element">
-                      {cards.map((item, i) => (
-                          <div key={i}>
-                          <Card dataCards = {item} onCardClick={props.onCardClick}/>
-                          </div>
+                      {cards.map((item) => (
+                          <Card key={item._id} dataCards = {item} onCardClick={props.onCardClick}/>
                         ))}
                   </div>
             </section>
           </main>
           
-          <div className="popup popup_delet">
+          {/* <div className="popup popup_delet">
             <form className=" popup__container-delet">
               <button className="popup__close popup__close_yes" type="button" />
               <p className="popup__title popup__question">Вы уверены?</p>
               <button type="submit" className="popup__btn-yes">Да</button>
             </form>
-          </div>
+          </div> */}
          
         </>
     )

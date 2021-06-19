@@ -1,8 +1,8 @@
 function PopupWithForm (props){
     return(
         
-          <div className={`popup popup${props.name} ${props.isOpen ? "popup_active":""}` }  >
-            <form className="popup__container  " method="POST" name={props.name}  autoComplete="off" >
+          <div className={`popup popup${props.name} ${props.isOpen ? "popup_active":""}` }>
+            <form className="popup__container  " method="POST" name={props.name}   autoComplete="off" >
               <button className="popup__close" type ="button" onClick ={ props.onClose }/>
               <h3 className="popup__title">{props.title}</h3>
               {props.children}

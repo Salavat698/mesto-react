@@ -1,6 +1,6 @@
 function ImagePopup(props){
     return(
-        <div className= {`popup popup_preview ${props.card ? "popup_active":""}` }>
+        <div className= {`popup popup_preview ${props.card.link  ? "popup_active":""}` }>
         <div className="popup__container-preview" method="POST" name="popup-container">
           <button className="popup__close popup__close_preview" type="button" onClick={props.onClose}/>
           <figure className="preview">

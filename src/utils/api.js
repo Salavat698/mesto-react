@@ -64,13 +64,13 @@ getInitialCards(){
         .then(result => {
           return this._checkStatus(result)
       })
-      .then(
-        data =>
-          data.map(e => {
-            e.isMine = e.owner._id === "a335225deae10b0eeb469615";
-            return e;
-          })
-      )
+      // .then(
+      //   data =>
+      //     data.map(e => {
+      //       e.isMine = e.owner._id === "a335225deae10b0eeb469615";
+      //       return e;
+      //     })
+      // )
     }
 
     addCard({ name,link}){
@@ -88,10 +88,10 @@ getInitialCards(){
     }
 
     deleteCard(id) {
-      return fetch(`https://mesto.nomoreparties.co/v1/cohort-24/cards/${id}`, {
+      return fetch(`${this.address}/cards/${id}`, {
           method: 'DELETE',
           headers: {
-              authorization: '43b98874-8a2f-4742-91c1-202875e69e98',
+              authorization: this.token,
               'Content-Type': 'application/json'
           },
       })
@@ -100,10 +100,10 @@ getInitialCards(){
           })
   }
   addLike(id) {
-    return fetch(`https://mesto.nomoreparties.co/v1/cohort-24/cards/likes/${id}`, {
+    return fetch(`${this.address}/cards/likes/${id}`, {
         method: 'PUT',
         headers: {
-            authorization: '43b98874-8a2f-4742-91c1-202875e69e98',
+            authorization: this.token,
             'Content-Type': 'application/json'
         },
     })
@@ -113,10 +113,10 @@ getInitialCards(){
   }
 
   removeLike(id) {
-  return fetch(`https://mesto.nomoreparties.co/v1/cohort-24/cards/likes/${id}`,{
+  return fetch(`${this.address}/cards/likes/${id}`,{
       method: 'DELETE',
       headers: {
-          authorization: '43b98874-8a2f-4742-91c1-202875e69e98',
+          authorization: this.token,
           'Content-Type': 'application/json'
       },
   })
@@ -128,6 +128,7 @@ getInitialCards(){
     return isLiked ? this.removeLike(cardId) : this.addLike(cardId);
   }
 }
+
 const api= new Api({
   address: 'https://mesto.nomoreparties.co/v1/cohort-24',
   token: '43b98874-8a2f-4742-91c1-202875e69e98',

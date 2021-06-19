@@ -13,8 +13,8 @@ function Card (props){
         <div className="element__header">
           <img className="element__image" 
            alt={props.name}
-           src=""
-           style={{ backgroundImage: `url(${props.dataCards.link})` }}
+           src={props.dataCards.link}
+          //  style={{ backgroundImage: `url(${props.dataCards.link})` }}
            onClick={handleClick}
            />
           <img className="element__backet" src={backet} alt="Корзина для удаление фото-карточки"/>
