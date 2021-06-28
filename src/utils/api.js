@@ -87,6 +87,7 @@ getInitialCards(){
       })
     }
 
+
     deleteCard(id) {
       return fetch(`${this.address}/cards/${id}`, {
           method: 'DELETE',
@@ -98,6 +99,9 @@ getInitialCards(){
           .then(result => {
             return this._checkStatus(result)
           })
+  }
+  changeCardStatus (cardId, isLiked) {
+    return isLiked ? this.deleteCard(cardId) : this.addCard(cardId);
   }
   addLike(id) {
     return fetch(`${this.address}/cards/likes/${id}`, {
@@ -124,9 +128,10 @@ getInitialCards(){
         return this._checkStatus(result)
       })
   }
-  like (cardId, isLiked) {
+  changeLikeCardStatus (cardId, isLiked) {
     return isLiked ? this.removeLike(cardId) : this.addLike(cardId);
   }
+
 }
 
 const api= new Api({

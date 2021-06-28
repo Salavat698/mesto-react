@@ -19,10 +19,13 @@
 @import url(./blocks/element/element.css);
 @import url(./blocks/element/__header/element__header.css);
 @import url(./blocks/element/__backet/element__backet.css);
+@import url(./blocks/element/__backet/_active/element__backet_active.css);
+@import url(./blocks/element/__backet/_hidden/element__backet_hidden.css);
 @import url(./blocks/element/__footer/element__footer.css);
 @import url(./blocks/element/__image/element__image.css);
 @import url(./blocks/element/__like/element__like.css);
 @import url(./blocks/element/__like/_active/element__like_active.css);
+@import url(./blocks/element/__like/_hidden/element__like_hidden.css);
 @import url(./blocks/element/__place-travel/element__place-travel.css);
 @import url(./blocks/element/__likes-click/element__likes-click.css);
 @import url(./blocks/element/__likes-group/element__likes-group.css);

@@ -1,40 +1,28 @@
 import addVector from '../images/add-vector.svg'
 import editButton from '../images/Edit-Button.svg'
-import api from '../utils/api.js';
 import Card from './Card';
 import React from 'react';
+// import api from '../utils/api'
+import { CurrentUserContext} from '../contexts/CurrentUserContext';
+// import { CurrentCardsContext} from '../contexts/CurrentCardsContext';
 
 
 function Main (props){
+  const translationUser = React.useContext(CurrentUserContext);
+  // const translationCards = React.useContext(CurrentCardsContext);
   const [userName, setUserName] = React.useState('');
   const [userDescription , setUserDescription ] = React.useState('');
   const [userAvatar, setUserAvatar] = React.useState('');
-
+  
   React.useEffect(()=>{
-    api.getUserInfo()
-    .then(res=>{
-      setUserName(res.name)
-      setUserDescription(res.about)
-      setUserAvatar(res.avatar)
-    })
-    .catch(res=>{
-      console.log(`Error:${res}`)
-    })
-  },[])
+      setUserName(translationUser.name)
+      setUserDescription(translationUser.about)
+      setUserAvatar(translationUser.avatar)
+  },[translationUser])
 
 
-  const [cards, setCards] = React.useState([])
 
-  React.useEffect(()=>{
-    api.getInitialCards()
-    .then(res =>{
-      setCards(res)
-    })
-    .catch(res=>{
-      console.log(`Error:${res}`)
-    })
-  }
-  ,[])
+
     return(
         <>
            <main className="page">
@@ -57,8 +45,14 @@ function Main (props){
             <section className="elements">
 
                   <div className="element">
-                      {cards.map((item) => (
-                          <Card key={item._id} dataCards = {item} onCardClick={props.onCardClick}/>
+                      {Array.from(props.cards).map((item) => (
+                          <Card 
+                          key={item._id} 
+                          dataCards = {item} 
+                          onCardClick={props.onCardClick}
+                          onCardLike ={props.onCardLike}
+                          onCardDelete ={props.onCardDelete}
+                          />
                         ))}
                   </div>
             </section>
