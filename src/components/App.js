@@ -11,7 +11,6 @@ import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 
 function App() {
-  
 
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   function handleEditAvatarClick (){
@@ -57,6 +56,7 @@ function App() {
     };
   }, []);
 
+
   const [currentUser,setCurrentUser] = React.useState({})
   React.useEffect(()=>{
     api.getUserInfo()
@@ -64,7 +64,7 @@ function App() {
       setCurrentUser(res)
     })
     .catch(res=>{
-      console.log(`Error:${res}`)
+      console.log(`Ошибка:${res}`)
     })
   },[])
   
@@ -76,6 +76,9 @@ function App() {
       setCurrentUser(res)
       closeAllPopups()
     })
+    .catch(res=>{
+      console.log(`Ошибка:${res}`)
+    })
   }
 
   function handleUpdateAvatar(e){
@@ -84,12 +87,15 @@ function App() {
       setCurrentUser(res)
       closeAllPopups()
     })
+    .catch(res=>{
+      console.log(`Ошибка:${res}`)
+    })
   }
 
   // card
 
 
-  const [currentCards,setCurrentCards] = React.useState({})
+  const [currentCards,setCurrentCards] = React.useState([])
   
   React.useEffect(()=>{
     api.getInitialCards()
@@ -123,18 +129,18 @@ function App() {
 
    }
 
+
    function handleAddPlaceSubmit(e){
-     console.log(e)
     api.addCard(e)
     .then( newCard =>{
-      console.log(newCard)
-      setCurrentCards(newCard);
-      closeAllPopups()
+      setCurrentCards([newCard, ...currentCards]);
+      closeAllPopups();
     })
     .catch(newCard=>{
-      console.log(`Error:${newCard}`)
+      console.log(`Ошибка:${newCard}`)
     })
    }
+
   return (
    
         <div className="App body-background">

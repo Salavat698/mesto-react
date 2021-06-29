@@ -2,26 +2,12 @@ import addVector from '../images/add-vector.svg'
 import editButton from '../images/Edit-Button.svg'
 import Card from './Card';
 import React from 'react';
-// import api from '../utils/api'
 import { CurrentUserContext} from '../contexts/CurrentUserContext';
-// import { CurrentCardsContext} from '../contexts/CurrentCardsContext';
+
 
 
 function Main (props){
   const translationUser = React.useContext(CurrentUserContext);
-  // const translationCards = React.useContext(CurrentCardsContext);
-  const [userName, setUserName] = React.useState('');
-  const [userDescription , setUserDescription ] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
-  
-  React.useEffect(()=>{
-      setUserName(translationUser.name)
-      setUserDescription(translationUser.about)
-      setUserAvatar(translationUser.avatar)
-  },[translationUser])
-
-
-
 
     return(
         <>
@@ -29,15 +15,15 @@ function Main (props){
             <section className="profile">
               <div className="profile__top-avatar">
                 <button className="profile__avatar-edit" type="button"  onClick={props.onEditAvatar} > 
-                  <img className="profile__avatar" src={userAvatar} alt="автарка автора" />
+                  <img className="profile__avatar" src={translationUser.avatar} alt="автарка автора" />
                 </button>
               </div>
               <div className="profile__info">
                 <div className="profile__header-info">
-                  <h1 className="profile__name" >{userName}</h1>
+                  <h1 className="profile__name" >{translationUser.name}</h1>
                   <button className="profile__edit-btn" type="button"><img className="profile__icon" onClick={props.onEditProfile} src={editButton} alt="кнопка добавление автора" /></button>
                 </div>
-                <p className="profile__work">{userDescription}</p>
+                <p className="profile__work">{translationUser.about}</p>
               </div>
               <button className="profile__add-btn" type="button" onClick={props.onAddPlace}><img src={addVector} alt="кнопка добавление фото" /></button>
             </section>

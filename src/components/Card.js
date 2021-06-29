@@ -16,7 +16,7 @@ function Card (props){
     props.onCardClick(props.dataCards);
   } 
   
-  let userId = React.useContext(CurrentUserContext)
+  const userId = React.useContext(CurrentUserContext)
   // Определяем, являемся ли мы владельцем текущей карточки
   const isOwn = props.dataCards.owner._id === userId._id;
 
