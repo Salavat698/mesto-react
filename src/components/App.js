@@ -114,6 +114,8 @@ function App() {
     api.changeLikeCardStatus(card._id, isLiked)
     .then((newCard) => {
         setCurrentCards((currentCards) => currentCards.map((c) => c._id === card._id ? newCard : c));
+    }).catch(res=>{
+      console.log(`Error:${res}`)
     });
   }
 
@@ -125,6 +127,8 @@ function App() {
     api.changeCardStatus(card._id, isOwn)
     .then((newCard) => {
       setCurrentCards((currentCards) => [...currentCards].filter((c) => c._id === card._id ? console.log(newCard) : c));
+    }).catch(res=>{
+      console.log(`Error:${res}`)
     });
 
    }
