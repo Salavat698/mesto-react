@@ -15,3 +15,7 @@
 * React.js
 * Express.js
 * Mongo.db
+
+### Запуск проект
+* npm init
+* npm start
