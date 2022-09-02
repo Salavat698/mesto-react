@@ -18,4 +18,4 @@
 
 ### Запуск проект
 * npm init
-* npm start
+* npm run start
